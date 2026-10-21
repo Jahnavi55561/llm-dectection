@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM Hallucination Detection & Correction Framework</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">✦ Hallucination<span>Detector</span></div>
+    <nav id="sidebar-nav">
+      <a class="nav-item active" href="#dashboard">⌂ Dashboard</a>
+      <a class="nav-item" href="#new-analysis">↗ New Analysis</a>
+      <a class="nav-item" href="#query-verify">💬 Quick Claim Check</a>
+      <a class="nav-item" href="#results-section">✓ Results</a>
+      <a class="nav-item" href="#corrected">✎ Corrected Text</a>
+      <a class="nav-item" href="#history">◷ Analysis History</a>
+      <a class="nav-item" href="#about">▣ About</a>
+    </nav>
+    <div class="side-note">Evidence-grounded claim checking</div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <small>EVIDENCE-BASED AI VERIFIER</small>
+        <h1>Dashboard</h1>
+      </div>
+      <span class="status-dot">● Local Service Active</span>
+    </header>
+
+    <section class="intro" id="dashboard">
+      <div>
+        <h2>Verify claims, not just text.</h2>
+        <p>Deconstruct paragraphs into claims, retrieve live external evidence, and detect hallucinations using DeBERTa NLI.</p>
+      </div>
+      <a class="primary" href="#new-analysis">+ New Analysis</a>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <span>✓ Supported</span>
+        <strong id="supported-count">0</strong>
+        <small>Evidence supports claim</small>
+      </div>
+      <div class="stat">
+        <span>✕ Contradicted</span>
+        <strong id="contradicted-count">0</strong>
+        <small>Evidence conflicts with claim</small>
+      </div>
+      <div class="stat">
+        <span>? Unverified</span>
+        <strong id="unverified-count">0</strong>
+        <small>Inconclusive or missing evidence</small>
+      </div>
+      <div class="stat">
+        <span>▤ Total Claims</span>
+        <strong id="total-count">0</strong>
+        <small>Sentences processed</small>
+      </div>
+    </section>
+
+    <section class="panel" id="new-analysis">
+      <div class="section-title">
+        <div>
+          <h2>Analyze AI-Generated Text</h2>
+          <p>Paste a paragraph or statement. Each sentence is retrieved, evaluated, and checked in parallel.</p>
+        </div>
+      </div>
+      <textarea id="input-text" placeholder="Paste your text here...&#10;&#10;Example: The Earth revolves around the Sun. The Earth is the largest planet in the Solar System. Telangana became a state in India in 2014."></textarea>
+      <div class="controls">
+        <span id="char-count">0 / 10,000 characters</span>
+        <button id="analyze-btn" class="primary">Analyze Text →</button>
+      </div>
+      <div id="message" role="status"></div>
+    </section>
+
+    <section class="panel" id="query-verify">
+      <div class="section-title">
+        <div>
+          <h2>Quick Claim & Question Check</h2>
+          <p>Verify a single question or statement directly against authoritative sources via the chat verification API.</p>
+        </div>
+      </div>
+      <div class="controls" style="gap: 10px; margin-top: 0;">
+        <input type="text" id="chat-input" placeholder="e.g. Does the Earth revolve around the Sun? or An IPv4 address is 128 bits." style="flex: 1; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 10px; font: inherit;">
+        <button id="chat-btn" class="primary" style="margin-top: 0;">Verify Claim →</button>
+      </div>
+      <div id="chat-result" style="display: none; margin-top: 14px;" class="result"></div>
+    </section>
+
+    <section class="panel" id="results-section">
+      <div class="section-title">
+        <div>
+          <h2>Claim Verification Results</h2>
+          <p>Individual sentence evaluations and grounded source citations.</p>
+        </div>
+      </div>
+      <div id="results" class="results empty">Your analysis results will appear here after clicking Analyze Text.</div>
+    </section>
+
+    <section class="panel" id="corrected">
+      <div class="section-title">
+        <div>
+          <h2>Complete Corrected Paragraph</h2>
+          <p>Reconstructed text preserving original meaning while substituting validated factual corrections.</p>
+        </div>
+        <button id="copy-btn" class="secondary">Copy Paragraph</button>
+      </div>
+      <textarea id="corrected-paragraph" readonly placeholder="Corrected text will appear here..."></textarea>
+    </section>
+
+    <section class="panel" id="history">
+      <div class="section-title">
+        <div>
+          <h2>Analysis History</h2>
+          <p>Recent analyses performed during this session.</p>
+        </div>
+        <button id="clear-history-btn" class="secondary">Clear History</button>
+      </div>
+      <div id="history-list" class="history-list empty">No previous analyses recorded yet.</div>
+    </section>
+
+    <section class="panel" id="about">
+      <h2>How It Works</h2>
+      <p>
+        1. <strong>Claim Decomposition:</strong> Text is split into distinct sentences, preserving abbreviations and numeric values.<br>
+        2. <strong>Evidence Retrieval:</strong> Queries the local knowledge base and Wikipedia public API in parallel batches.<br>
+        3. <strong>NLI Classification:</strong> Uses <code>cross-encoder/nli-deberta-v3-small</code> with passage selection to evaluate Entailment vs Contradiction.<br>
+        4. <strong>Factual Correction:</strong> Contradicted claims optionally prompt local Ollama for corrections, which are validated against the evidence using NLI before replacement.
+      </p>
+      <div id="health" class="health">Checking model status…</div>
+    </section>
+
+    <footer>
+      LLM Hallucination Detection and Correction Framework · Research & Educational Prototype
+    </footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
