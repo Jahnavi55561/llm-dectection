@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "The Earth revolves around the Sun.",
+    "evidence": "Earth orbits the Sun, completing one orbit in about 365.25 days.",
+    "source": "NASA Solar System Exploration — Earth",
+    "source_url": "https://science.nasa.gov/solar-system/planets/earth/"
+  },
+  {
+    "claim": "The Earth is the largest planet in the Solar System.",
+    "evidence": "Jupiter is the largest planet in the Solar System. Earth is smaller than Jupiter.",
+    "source": "NASA Solar System Exploration — Jupiter",
+    "source_url": "https://science.nasa.gov/jupiter/"
+  },
+  {
+    "claim": "Telangana became a state in India in 2014.",
+    "evidence": "Telangana became the 29th state of India on 2 June 2014.",
+    "source": "Encyclopaedia Britannica — Telangana",
+    "source_url": "https://www.britannica.com/place/Telangana"
+  },
+  {
+    "claim": "The Moon is made entirely of cheese.",
+    "evidence": "The Moon is a rocky natural satellite of Earth, with a surface made of rock and dust.",
+    "source": "NASA — Moon",
+    "source_url": "https://science.nasa.gov/moon/"
+  },
+  {
+    "claim": "Bats are blind.",
+    "evidence": "Bats are not blind; most species of bats have functional eyesight, and fruit bats have well-developed vision.",
+    "source": "Encyclopaedia Britannica — Bat",
+    "source_url": "https://www.britannica.com/animal/bat-mammal"
+  },
+  {
+    "claim": "Every human has naturally green blood.",
+    "evidence": "Human blood is naturally red due to hemoglobin, an iron-rich protein that binds oxygen in red blood cells.",
+    "source": "Encyclopaedia Britannica — Blood",
+    "source_url": "https://www.britannica.com/science/blood-biochemistry"
+  }
+]
