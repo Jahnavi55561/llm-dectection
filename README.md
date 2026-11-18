@@ -13,7 +13,7 @@ A local Flask web application that decomposes AI-generated text into factual cla
 - **Multi-Threaded Execution:** Analyzes sentences concurrently via a thread pool to provide fast response times.
 - **Analysis History:** Maintains a rolling history of recent session analyses accessible via the web interface.
 
-## Requirements
+## Requirements.
 
 - Python 3.10 or 3.11 recommended (PyTorch and transformers have stable binary wheels for 3.10 and 3.11).
 - Internet connection for Wikipedia evidence retrieval and initial model download.
