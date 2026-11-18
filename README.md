@@ -2,7 +2,7 @@
 
 A local Flask web application that decomposes AI-generated text into factual claims, retrieves relevant evidence in parallel batches, validates each claim against evidence using a DeBERTa NLI cross-encoder, and generates validated corrections using local Ollama.
 
-## Architecture & Capabilities
+## Architecture & Capabilities.
 
 - **Claim Decomposition:** Splits paragraphs into individual claims while preserving abbreviations (e.g., `Dr.`, `U.S.`, `sq. km.`), numeric decimals (`3.14`), and bullet lists.
 - **Parallel Batch Evidence Retrieval:** Queries both a local JSON knowledge base (exact and fuzzy match) and the Wikipedia public API. Searches and page extracts are batched in a single network request using connection pooling.
